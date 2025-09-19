@@ -1,0 +1,49 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg-gradient {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(90deg, #ddd6d7, #afa4a9);
+}
+
+input:focus,select:focus {
+    outline: none !important;
+    border: 2px solid #ddd6d7 !important;  
+    box-shadow: 0 0 5px #afa4a9 !important;
+}
+.card {
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    padding: 30px;
+    margin-bottom: 40px;
+     background: linear-gradient(90deg, #ddd6d7, #afa4a9);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+table {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+thead {
+    background: linear-gradient(90deg, #dceba5, #ebcfda);
+    color: white;
+    font-weight: 600;
+}
+
+tbody tr {
+    background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+    background-color: #ffe3ec;
+}

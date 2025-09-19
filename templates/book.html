@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-lg p-4">
+  <h3 class="text-center text-dark fw-bold">Book Appointment</h3>
+  <form method="POST">
+    <div class="mb-3">
+      <label>Name</label>
+      <input type="text" name="name" class="form-control mt-2" required>
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control mt-2" required>
+    </div>
+    <div class="mb-3">
+      <label>Phone</label>
+      <input type="text" name="phone" class="form-control mt-2" maxlength="10" required>
+    </div>
+    <div class="mb-3">
+      <label>Doctor</label>
+      <select name="doctor" class="form-control mt-2">
+        <option>Dr. viyona</option>
+        <option>Dr. saisha</option>
+        <option>Dr. swetha</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Date</label>
+      <input type="date" name="date" class="form-control mt-2" required>
+    </div>
+    <div class="mb-3">
+      <label>Time</label>
+      <input type="time" name="time" class="form-control mt-2" required>
+    </div>
+    <button class="btn btn-secondary w-100 py-2 fs-3 rounded-5 mt-3">Book Now</button>
+  </form>
+</div>
+{% endblock %}
