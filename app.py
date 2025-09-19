@@ -67,6 +67,42 @@ def doctor_dashboard():
     appointments = Appointment.query.all()
     return render_template("doctor.html", appointments=appointments)
 
+# -----------------------
+# ✅ New Routes for Actions
+# -----------------------
+
+@app.route("/cancel/<int:appt_id>", methods=["POST"])
+def cancel_appointment(appt_id):
+    appt = Appointment.query.get_or_404(appt_id)
+    appt.status = "Cancelled"
+    db.session.commit()
+    flash(f"Appointment {appt.id} cancelled.", "warning")
+    return redirect(url_for("doctor_dashboard"))
+
+@app.route("/approve/<int:appt_id>", methods=["POST"])
+def approve_appointment(appt_id):
+    appt = Appointment.query.get_or_404(appt_id)
+    appt.status = "Approved"
+    db.session.commit()
+    flash(f"Appointment {appt.id} approved.", "success")
+    return redirect(url_for("doctor_dashboard"))
+
+@app.route("/postpone/<int:appt_id>", methods=["GET", "POST"])
+def postpone_appointment(appt_id):
+    appt = Appointment.query.get_or_404(appt_id)
+    if request.method == "POST":
+        new_date = request.form.get("date")
+        new_time = request.form.get("time")
+        if new_date and new_time:
+            appt.date = new_date
+            appt.time = new_time
+            appt.status = "Postponed"
+            db.session.commit()
+            flash(f"Appointment {appt.id} postponed to {new_date} at {new_time}.", "info")
+            return redirect(url_for("doctor_dashboard"))
+        flash("Please provide new date and time.", "danger")
+    return render_template("postpone.html", appt=appt)
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()

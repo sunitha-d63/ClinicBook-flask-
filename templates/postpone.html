@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h3 class="text-center fw-bold">Postpone Appointment #{{ appt.id }}</h3>
+  <form method="post">
+    <div class="mb-3">
+      <label for="date" class="form-label">New Date</label>
+      <input type="date" name="date" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="time" class="form-label">New Time</label>
+      <input type="time" name="time" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-secondary">Update</button>
+    <a href="{{ url_for('doctor_dashboard') }}" class="btn btn-dark">Cancel</a>
+  </form>
+</div>
+{% endblock %}

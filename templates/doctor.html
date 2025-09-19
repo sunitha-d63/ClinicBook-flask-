@@ -1,11 +1,18 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="card shadow-lg p-4">
   <h3 class="text-center text-dark">Doctor Dashboard</h3>
   <table class="table table-bordered table-striped mt-3">
     <thead class="table-dark">
       <tr>
-        <th>ID</th><th>Patient</th><th>Email</th><th>Phone</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th>
+        <th>ID</th>
+        <th>Patient</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +26,32 @@
         <td>{{ appt.date }}</td>
         <td>{{ appt.time }}</td>
         <td>{{ appt.status }}</td>
+        <td>
+          <form
+            action="{{ url_for('cancel_appointment', appt_id=appt.id) }}"
+            method="post"
+            style="display: inline"
+          >
+            <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+          </form>
+
+          <a
+            href="{{ url_for('postpone_appointment', appt_id=appt.id) }}"
+            class="btn btn-warning btn-sm"
+          >
+            Postpone
+          </a>
+
+          <form
+            action="{{ url_for('approve_appointment', appt_id=appt.id) }}"
+            method="post"
+            style="display: inline"
+          >
+            <button type="submit" class="btn btn-success btn-sm">
+              Approve
+            </button>
+          </form>
+        </td>
       </tr>
       {% endfor %}
     </tbody>
